@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>할 일 목록</title>
+    <style>
+      .completed {
+        text-decoration: line-through;
+        color: gray;
+      }
+    </style>
+</head>
+<body>
+<h1>할 일 목록</h1>
+<a href="{% url 'add_task' %}">새 할 일 추가</a>
+<ul>
+    {% for task in tasks %}
+        <li class="{% if task.completed %}completed{% endif %}">
+            {{ task.title }}
+            {% if task.due_date %}
+                (마감일: {{ task.due_date|date:"Y-m-d" }})
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>할 일이 없습니다.</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
