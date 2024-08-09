@@ -21,6 +21,8 @@
             {% if task.due_date %}
                 (마감일: {{ task.due_date|date:"Y-m-d" }})
             {% endif %}
+            <a href="{% url 'edit_task' task.id %}">수정</a>
+            <a href="{% url 'delete_task' task.id %}">삭제</a>
         </li>
     {% empty %}
         <li>할 일이 없습니다.</li>
