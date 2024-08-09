@@ -28,5 +28,18 @@
         <li>할 일이 없습니다.</li>
     {% endfor %}
 </ul>
+<!-- 기존 내용 유지 -->
+<h2>할 일 목록</h2>
+{% for list in lists %}
+    <h3>{{ list.name }}</h3>
+    <ul>
+        {% for task in tasks %}
+            {% if task.list == list %}
+                <li>{{ task.title }} - {{ task.due_date|date:"Y-m-d" }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endfor %}
+<!-- 기존 내용 유지 -->
 </body>
 </html>

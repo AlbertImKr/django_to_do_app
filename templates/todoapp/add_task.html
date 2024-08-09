@@ -9,7 +9,21 @@
 <h1>할 일 추가</h1>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% for field in form %}
+        <p>
+            {{ field.label_tag }}
+            {% if field.name == 'list' %}
+                <select name="list" required>
+                    <option value="">---------</option>
+                    {% for list in lists %}
+                        <option value="{{ list.id }}">{{ list.name }}</option>
+                    {% endfor %}
+                </select>
+            {% else %}
+                {{ field }}
+            {% endif %}
+        </p>
+    {% endfor %}
     <button type="submit">추가</button>
 </form>
 <a href="{% url 'task_list' %}">목록으로 돌아가기</a>
