@@ -22,6 +22,15 @@ class Task(models.Model):
         blank=True,
         null=True,
     )
+    PRIORITY_CHOICES = [
+        (1, '낮음'),
+        (2, '중간'),
+        (3, '높음'),
+    ]
+    priority = models.IntegerField(
+        choices=PRIORITY_CHOICES,
+        default=2,
+    )
 
     def __str__(self):
-        return self.title
+        return f"{self.title} (우선순위: {self.get_priority_display()})"

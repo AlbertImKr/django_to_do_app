@@ -13,7 +13,7 @@
         <p>
             {{ field.label_tag }}
             {% if field.name == 'list' %}
-                <select name="list" required>
+                <select name="list">
                     <option value="">---------</option>
                     {% for list in lists %}
                         <option value="{{ list.id }}">{{ list.name }}</option>
